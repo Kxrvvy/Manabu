@@ -1,5 +1,5 @@
 import { Plus, Minus } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
     Select,
     SelectContent,
@@ -68,18 +68,16 @@ export default function GenerateOptions({ options, onChange }) {
 
 
     return (
-        <div className="optionsContainer bg-amber-500">
+        <div className="optionsContainer animate-fade-in-up w-full max-w-500 mx-auto text-black" style={{ animationDelay: "0.3s" }}>
             {/* Step 3 Heading */}
             <div className="step3 flex items-center gap-3 mb-4">
-                <div className="step3Heading">
+                <div className="step3Heading w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
                     3
                 </div>
-                <h3>Customize Settings</h3>
+                <h3 className="font-bold text-xl">Customize Settings</h3>
             </div>
 
-
-            <div className="  bg-orange-200 p-6 rounded-lg space-y-6 border border-green-200 ">
-
+            <div className=" card-elevated rounded-2xl p-6 border border-border bg-secondary/30 ">
                 <div className="GENERATE_SETTINGS flex items-center gap-2 mb-6" >
                     (LOGO)
                     <h3>Generate Settings</h3>
@@ -94,18 +92,18 @@ export default function GenerateOptions({ options, onChange }) {
                         </label>
 
                         <div className="flex items-center gap-3">
-                            <button className="MINUS_BUTTON"
+                            <button className="MINUS_BUTTON border rounded-lg p-1 cursor-pointer"
                                 onClick={DecreaseAmount}
                                 disabled={options.count <= 5}>
                                 <Minus />
                             </button>
 
-                            <div className="FLASHCARD_NUMBER">
+                            <div className="FLASHCARD_NUMBER flex-1 text-center py-2 px-4 bg-background/50 rounded-lg border border-border">
                                 <span>{options.count}</span>
                                 <span>cards</span>
                             </div>
 
-                            <button className="PLUS_BUTTON"
+                            <button className="PLUS_BUTTON border rounded-xl p-2 cursor-pointer"
                                 onClick={IncreaseAmount}
                                 disabled={options.count >= 20}>
                                 <Plus />
@@ -185,63 +183,6 @@ export default function GenerateOptions({ options, onChange }) {
                             <span>Short</span>
                             <span>Long</span>
                         </div>
-
-
-                        <label className="block text-sm font-medium text-gray-700 mb-3">
-                            Back text length (Answer)
-                        </label>
-                        <div className="flex gap-6">
-                            <label className="flex items-center cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="frontLength"
-                                    value="short"
-                                    checked={options.frontLength === 'short'}
-                                    onChange={(e) => {
-                                        handleChange('frontLength', e.target.value);
-                                        setFrontLength(getFrontLengthValue('short'));
-                                    }}
-                                    className="mr-2 cursor-pointer"
-                                />
-                                <span className="group-hover:text-blue-600 transition-colors">
-                                    Short
-                                </span>
-                            </label>
-
-                            <label className="flex items-center cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="frontLength"
-                                    value="medium"
-                                    checked={options.frontLength === 'medium'}
-                                    onChange={(e) => {
-                                        handleChange('frontLength', e.target.value);
-                                        setFrontLength(getFrontLengthValue('medium'));
-                                    }}
-                                    className="mr-2 cursor-pointer"
-                                />
-                                <span className="group-hover:text-blue-600 transition-colors">
-                                    Medium
-                                </span>
-                            </label>
-
-                            <label className="flex items-center cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="frontLength"
-                                    value="long"
-                                    checked={options.frontLength === 'long'}
-                                    onChange={(e) => {
-                                        handleChange('frontLength', e.target.value);
-                                        setFrontLength(getFrontLengthValue('long'));
-                                    }}
-                                    className="mr-2 cursor-pointer"
-                                />
-                                <span className="group-hover:text-blue-600 transition-colors">
-                                    Long
-                                </span>
-                            </label>
-                        </div>
                     </div>
 
                     {/* Back Text Length */}
@@ -266,64 +207,7 @@ export default function GenerateOptions({ options, onChange }) {
                         <div className="flex justify-between text-xs text-muted-foreground">
                             <span>Short</span>
                             <span>Long</span>
-                        </div>
-
-
-                        <label className="block text-sm font-medium text-gray-700 mb-3">
-                            Back text length (Answer)
-                        </label>
-                        <div className="flex gap-6">
-                            <label className="flex items-center cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="backLength"
-                                    value="short"
-                                    checked={options.backLength === 'short'}
-                                    onChange={(e) => {
-                                        handleChange('backLength', e.target.value);
-                                        setBackLength(getBackLengthValue('short'));
-                                    }}
-                                    className="mr-2 cursor-pointer"
-                                />
-                                <span className="group-hover:text-blue-600 transition-colors">
-                                    Short
-                                </span>
-                            </label>
-
-                            <label className="flex items-center cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="backLength"
-                                    value="medium"
-                                    checked={options.backLength === 'medium'}
-                                    onChange={(e) => {
-                                        handleChange('backLength', e.target.value)
-                                        setBackLength(getBackLengthValue('medium'));
-                                    }}
-                                    className="mr-2 cursor-pointer"
-                                />
-                                <span className="group-hover:text-blue-600 transition-colors">
-                                    Medium
-                                </span>
-                            </label>
-
-                            <label className="flex items-center cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="backLength"
-                                    value="long"
-                                    checked={options.backLength === 'long'}
-                                    onChange={(e) => {
-                                        handleChange('backLength', e.target.value)
-                                        setBackLength(getBackLengthValue('long'));
-                                    }}
-                                    className="mr-2 cursor-pointer"
-                                />
-                                <span className="group-hover:text-blue-600 transition-colors">
-                                    Long
-                                </span>
-                            </label>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </div>

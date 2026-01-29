@@ -12,7 +12,7 @@ export default function TextInput({ value, onChange }) {
             ></textarea>
 
             <div>
-                {value.length} / 25000 characters
+                {value.length} / 25000 characters {value.length < 100 ? '(minimum 100)' : '✓'}
             </div>
         </div>
     );
